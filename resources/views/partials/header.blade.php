@@ -1,5 +1,5 @@
-<header class="container-lg">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<header>
+    <nav class="px-5 navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand fs-3" href="{{route('comics.index')}}">Comics</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
