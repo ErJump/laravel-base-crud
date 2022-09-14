@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ComicController extends Controller
 {
@@ -36,7 +37,19 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $comic = new Comic();
+        $comic->title = $data['title'];
+        $comic->slug = Str::slug($comic['title'], '-');
+        $comic->description = $data['description'];
+        $comic->thumb = $data['thumb'];
+        $comic->price = $data['price'];
+        $comic->series = $data['series'];
+        /* $revertedDate = date('Y-m-d', strtotime($data['sale_date'])); */
+        $comic->sale_date = $data['sale_date'];
+        $comic->type = $data['type'];
+        $comic->save();
+        return redirect()->route('comics.show', $comic->slug);
     }
 
     /**

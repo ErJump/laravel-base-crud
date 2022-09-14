@@ -7,7 +7,7 @@
         <h2 class="mb-3">{{$comic->title}}</h2>
         <div class="row">
             <div class="col-4">
-                <img src="{{$comic->thumb}}" alt="{{$comic->title}}">
+                <img  class="img-fluid" src="{{$comic->thumb}}" alt="{{$comic->title}}">
             </div>
             <div class="col-8">
                 <p>{{$comic->description}}</p>
