@@ -5,8 +5,9 @@
 @section('content')
 
 <div class="container-lg">
-    <form action="{{ route('comics.store') }}" method="post">
+    <form action="{{ route('comics.update', $comic->id) }}" method="post">
         @csrf
+        @method('PUT')
         <div class="form-group mb-2">
             <label for="title">Title</label>
             <input required name="title" type="text" class="form-control" id="title" placeholder="Enter title" value="{{$comic->title}}">
