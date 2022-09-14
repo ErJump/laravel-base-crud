@@ -8,14 +8,14 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item ">
-                    <a class="nav-link {{ request()->routeIs('comics.index') ? 'ms_active' : ''}}" >Home</a>
+                    <a class="nav-link {{ request()->routeIs('comics.index') ? 'ms_active' : ''}}" href="{{route('comics.index')}}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
+                    <a class="nav-link {{ request()->routeIs('comics.create') ? 'ms_active' : ''}}" href="{{route('comics.create')}}">Add New Comic</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="#">Pricing</a>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </nav>
