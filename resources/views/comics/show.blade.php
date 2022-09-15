@@ -22,7 +22,7 @@
                 <p><strong>Type:</strong> {{$comic->type}}</p>
             </div>
             <div class="col-12 text-center">
-                <form action="{{ route('comics.destroy', $comic->slug)}}" method="post">
+                <form action="{{ route('comics.destroy', $comic->slug)}}" method="post" class="ms_form_delete">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -30,4 +30,19 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        const deleteForms = document.querySelectorAll('.ms_form_delete');
+        deleteForms.forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const confirmDelete = window.confirm('Are you sure you want to delete this comic?');
+                if (confirmDelete) {
+                    this.submit();
+                }
+            });
+        });
+    </script>
 @endsection
