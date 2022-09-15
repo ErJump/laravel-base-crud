@@ -22,7 +22,7 @@
                 <p><strong>Type:</strong> {{$comic->type}}</p>
             </div>
             <div class="col-12 text-center">
-                <form action="{{ route('comics.destroy', $comic->slug)}}" method="post" class="ms_form_delete">
+                <form action="{{ route('comics.destroy', $comic->slug)}}" method="post" class="ms_form_delete" title-delete="{{$comic->title}}">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -37,8 +37,9 @@
         const deleteForms = document.querySelectorAll('.ms_form_delete');
         deleteForms.forEach(form => {
             form.addEventListener('submit', function(e) {
+                const titleName = this.getAttribute('title-delete');
                 e.preventDefault();
-                const confirmDelete = window.confirm('Are you sure you want to delete this comic?');
+                const confirmDelete = window.confirm(`Are you sure you want to delete ${titleName}?`);
                 if (confirmDelete) {
                     this.submit();
                 }
