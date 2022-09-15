@@ -39,15 +39,18 @@ class ComicController extends Controller
     {
         $data = $request->all();
         $comic = new Comic();
-        $comic->title = $data['title'];
-        $comic->slug = Str::slug($comic['title'], '-');
+        /* $comic->title = $data['title'];
         $comic->description = $data['description'];
         $comic->thumb = $data['thumb'];
         $comic->price = $data['price'];
         $comic->series = $data['series'];
-        /* $revertedDate = date('Y-m-d', strtotime($data['sale_date'])); */
+        // $revertedDate = date('Y-m-d', strtotime($data['sale_date'])); 
         $comic->sale_date = $data['sale_date'];
         $comic->type = $data['type'];
+        $comic->slug = Str::slug($comic['title'], '-');
+        $comic->save(); */
+        $data['slug'] = Str::slug($data['title'], '-');
+        $comic->fill($data);
         $comic->save();
         return redirect()->route('comics.show', $comic->slug);
     }
@@ -89,15 +92,22 @@ class ComicController extends Controller
         $data = $request->all();
         //$comic = Comic::find($id);
         $comic = Comic::where('slug', $slug)->firstOrFail();
-        $comic->title = $data['title'];
-        $comic->slug = Str::slug($comic['title'], '-');
+        //! Assegnazione manuale
+        /* $comic->title = $data['title'];
         $comic->description = $data['description'];
         $comic->thumb = $data['thumb'];
         $comic->price = $data['price'];
         $comic->series = $data['series'];
         $comic->sale_date = $data['sale_date'];
-        $comic->type = $data['type'];
-        $comic->save();
+        $comic->type = $data['type']; */
+        //$comic->slug = Str::slug($comic['title'], '-');
+        //$comic->save();
+        $data['slug'] = Str::slug($data['title'], '-');
+        //! Assegnazione automatica con fillable con metodo fill + save
+        /* $comic->fill($data);
+        $comic->save(); */
+        //! Assegnazione automatica con metodo update
+        $comic->update($data);
         return redirect()->route('comics.index');
     }
 
