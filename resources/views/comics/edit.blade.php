@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="container-lg">
-    <form action="{{ route('comics.update', $comic->id) }}" method="post">
+    <form action="{{ route('comics.update', $comic->slug) }}" method="post">
         @csrf
         @method('PUT')
         <div class="form-group mb-2">

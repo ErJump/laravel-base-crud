@@ -84,10 +84,11 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
         $data = $request->all();
-        $comic = Comic::find($id);
+        //$comic = Comic::find($id);
+        $comic = Comic::where('slug', $slug)->firstOrFail();
         $comic->title = $data['title'];
         $comic->slug = Str::slug($comic['title'], '-');
         $comic->description = $data['description'];
