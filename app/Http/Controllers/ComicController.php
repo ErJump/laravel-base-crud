@@ -70,9 +70,10 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        $comic = Comic::findOrFail($id);
+        //$comic = Comic::findOrFail($id); tramite id
+        $comic = Comic::where('slug', $slug)->firstOrFail();
         return view('comics.edit', compact('comic'));
     }
 

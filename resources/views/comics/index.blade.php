@@ -27,7 +27,7 @@
                         <td>{{$comic->sale_date}}</td>
                         <td>{{$comic->type}}</td>
                         <td>
-                            <a href="{{route('comics.edit', $comic->id)}}">
+                            <a href="{{route('comics.edit', $comic->slug)}}">
                                 <button type="button" class="btn btn-secondary">Edit</button>
                             </a>
                         </td>
