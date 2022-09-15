@@ -16,6 +16,13 @@
                 <p><strong>Sale Date:</strong> {{$comic->sale_date}}</p>
                 <p><strong>Type:</strong> {{$comic->type}}</p>
             </div>
+            <div class="col-12 text-center">
+                <form action="{{ route('comics.destroy', $comic->slug)}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
