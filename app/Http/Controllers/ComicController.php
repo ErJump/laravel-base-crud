@@ -52,7 +52,7 @@ class ComicController extends Controller
         $data['slug'] = Str::slug($data['title'], '-');
         $comic->fill($data);
         $comic->save();
-        return redirect()->route('comics.show', $comic->slug);
+        return redirect()->route('comics.show', $comic->slug)->with('created', $data['title']);
     }
 
     /**
@@ -108,7 +108,7 @@ class ComicController extends Controller
         $comic->save(); */
         //! Assegnazione automatica con metodo update
         $comic->update($data);
-        return redirect()->route('comics.index');
+        return redirect()->route('comics.index')->with('updated', $data['title']);
     }
 
     /**
@@ -121,6 +121,6 @@ class ComicController extends Controller
     {
         $deleteComic = Comic::where('slug', $slug)->firstOrFail();
         $deleteComic->delete();
-        return redirect()->route('comics.index');
+        return redirect()->route('comics.index')->with('deleted', $deleteComic->title);
     }
 }

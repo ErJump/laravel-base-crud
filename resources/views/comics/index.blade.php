@@ -4,6 +4,16 @@
 
 @section('content')
     <div class="container-lg">
+        @if (session('deleted'))
+            <div class="alert alert-danger" role="alert">
+                <strong>{{session('deleted')}} has been deleted!</strong> 
+            </div>
+        @endif
+        @if (session('updated'))
+            <div class="alert alert-success" role="alert">
+                <strong>{{session('updated')}} has been updated!</strong> 
+            </div>
+        @endif
         <h3 class="mb-4">Comics:</h3>
         <table class="table">
             <thead class="thead-dark">

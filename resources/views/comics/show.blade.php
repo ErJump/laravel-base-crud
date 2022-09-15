@@ -4,6 +4,11 @@
 
 @section('content')
 <div class="container-lg">
+        @if (session('created'))
+            <div class="alert alert-success" role="alert">
+                <strong>{{session('created')}} has been created!</strong> 
+            </div>
+        @endif
         <h2 class="mb-3">{{$comic->title}}</h2>
         <div class="row">
             <div class="col-4">
