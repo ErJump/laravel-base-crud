@@ -4,9 +4,9 @@
 
 @section('content')
 <div class="container-lg">
-        @if (session('created'))
+        @if (session('result-message'))
             <div class="alert alert-success" role="alert">
-                <strong>{{session('created')}} has been created!</strong> 
+                <strong>{{session('result-message')}}</strong> 
             </div>
         @endif
         <h2 class="mb-3">{{$comic->title}}</h2>
