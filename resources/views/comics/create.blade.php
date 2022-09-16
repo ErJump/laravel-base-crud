@@ -5,6 +5,15 @@
 @section('content')
 
 <div class="container-lg">
+    @if ($errors->any())
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form action="{{ route('comics.store') }}" method="post">
         @csrf
         <div class="form-group mb-2">

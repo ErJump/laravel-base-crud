@@ -8,6 +8,17 @@ use Illuminate\Support\Str;
 
 class ComicController extends Controller
 {
+    protected $validationArray = [
+        'title' => 'required|string|min:3|max:255|unique:comics,title',
+        'description' => 'required|min:3|string',
+        'thumb' => 'required|active_url',
+        'price' => 'required|numeric',
+        'series' => 'required|string|min:3|max:255',
+        'sale_date' => 'required|date',
+        'type' => 'required|exists:comics,type',
+    ];
+
+
     /**
      * Display a listing of the resource.
      *
@@ -38,6 +49,7 @@ class ComicController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $validatedData = $request->validate($this->validationArray);
         $comic = new Comic();
         /* $comic->title = $data['title'];
         $comic->description = $data['description'];
@@ -90,6 +102,7 @@ class ComicController extends Controller
     public function update(Request $request, $slug)
     {
         $data = $request->all();
+        $validatedData = $request->validate($this->validationArray);
         //$comic = Comic::find($id);
         $comic = Comic::where('slug', $slug)->firstOrFail();
         //! Assegnazione manuale
