@@ -49,8 +49,8 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $validatedData = $request->validate($this->validationArray);
+        //$data = $request->all();
+        $data = $request->validate($this->validationArray);
         $comic = new Comic();
         /* $comic->title = $data['title'];
         $comic->description = $data['description'];
@@ -102,8 +102,8 @@ class ComicController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        $data = $request->all();
-        $validatedData = $request->validate($this->validationArray);
+        //$data = $request->all();
+        $data = $request->validate($this->validationArray);
         //$comic = Comic::find($id);
         $comic = Comic::where('slug', $slug)->firstOrFail();
         //! Assegnazione manuale
